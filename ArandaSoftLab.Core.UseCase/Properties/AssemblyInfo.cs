@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("ArandaSoftLab")]
+[assembly: AssemblyTitle("ArandaSoftLab.Core.UseCase")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ArandaSoftLab")]
+[assembly: AssemblyProduct("ArandaSoftLab.Core.UseCase")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("1a4b98e0-22cb-4fca-b958-3b5bf3105e0e")]
+[assembly: Guid("97ed1cec-2afb-461f-8f00-3cb159022af8")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
