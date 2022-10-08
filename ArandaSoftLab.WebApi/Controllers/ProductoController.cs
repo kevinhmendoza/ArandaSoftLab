@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace ArandaSoftLab.WebApi.Controllers
 {
+    [RoutePrefix("api/Producto")]
     public class ProductoController : ApiController
     {
         private readonly IMediator _mediator = null;

@@ -1,10 +1,5 @@
-using Infrastructure.Initialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Application.WebApi.App_Start;
 using System.Web.Http;
-using System.Web.Routing;
 
 namespace ArandaSoftLab.WebApi
 {
@@ -15,8 +10,7 @@ namespace ArandaSoftLab.WebApi
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            new Inicializaciones().Seeders();
-
+            AutoFacConfig.ConfigureContainer();
 
 
         }
