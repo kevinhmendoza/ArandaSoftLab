@@ -1,113 +1,116 @@
-﻿//using ArandaSoftLab.Core.Domain.Enumerations;
-//using ArandaSoftLab.Core.Domain.Productos;
-//using AutoMapper;
-//using Core.UseCase.Base;
-//using Core.UseCase.Util;
-//using FluentValidation;
-//using MediatR;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading;
-//using System.Threading.Tasks;
+﻿using ArandaSoftLab.Core.Domain.Enumerations;
+using ArandaSoftLab.Core.Domain.Productos;
+using ArandaSoftLab.Core.UseCase.Dtos;
+using ArandaSoftLab.Core.UseCase.Util;
+using AutoMapper;
+using Core.UseCase.Base;
+using Core.UseCase.Util;
+using FluentValidation;
+using FluentValidation.Results;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
-//namespace ArandaSoftLab.Core.UseCase.Productos
-//{
-//    public class AgregarProductoInteractor : IRequestHandler<AgregarProductoRequest, AgregarProductoResponse>, IInteractor
-//    {
-//        public string Module => ModulesEnumeration.ArandaSoftLab_Products.Value;
-//        public string Name => GetType().Name;
+namespace ArandaSoftLab.Core.UseCase.Productos
+{
+    public class AgregarProductoInteractor : IRequestHandler<AgregarProductoRequest, AgregarProductoResponse>, IInteractor
+    {
+        public string Module => ModulesEnumeration.ArandaSoftLab_Products.Value;
+        public string Name => GetType().Name;
 
-//        private readonly AgregarProductoRequestValidator _validator;
-//        public readonly IMapper _mappeer;
-
-
-//        private AgregarProductoRequest _request;
-//        public AgregarProductoInteractor(AbstractValidator<AgregarProductoRequest> validator, IMapper mappeer)
-//        {
-//            _mappeer = mappeer;
-//            _validator = validator as AgregarProductoRequestValidator;
-//        }
-
-//        public Task<AgregarProductoResponse> Handle(AgregarProductoRequest request, CancellationToken cancellationToken)
-//        {
-//            _request = request;
-//            var validationResult = _validator.Validate(request);
-//            if (!validationResult.IsValid) return Task.FromResult(new AgregarProductoResponse(validationResult));
-
-//            var pago = _validator.Mesa.NuevoPago(new KMNuevoPagoMesaRequest()
-//            {
-//                Cita = _validator.Cita,
-//                ConsecutivoService = _consecutivoService,
-//                CorreoCliente = request.CorreoCliente,
-//                Descuento = _validator.Descuento,
-//                IdentificacionCliente = request.IdentificacionCliente,
-//                MedioPago = request.MedioPago,
-//                NombreCliente = request.NombreCliente,
-//                Servicio = _validator.Servicio,
-//                TelefonoCliente = request.TelefonoCliente,
-//                Tercero = _validator.Tercero,
-//                UnitOfWork = _validator.UnitOfWork,
-//                VigenciaActiva = _validator.VigenciaActiva
-//            });
-
-//            _validator.UnitOfWork.CommitAndCloseTransaction(this);//Porque hacemos uso del consecutivo
-
-//            var pagoDto = new KMSucursalMesaPagoDto();
-//            _mappeer.Map(pago, pagoDto);
-
-//            return Task.FromResult(new AgregarProductoResponse(validationResult, pagoDto));
-//        }
-//    }
-
-//    public class AgregarProductoRequest : IRequest<AgregarProductoResponse>
-//    {
-//        public string Nombre { get; set; }
-//        public string Descripcion { get; set; }
-//        public int? CategoriaId { get; set; }
-//        public string Imagen { get; set; }
-//    }
-
-//    public class AgregarProductoResponse
-//    {
-//        public KMSucursalMesaPagoDto Pago { get; set; }
-//        public KMRegistrarPagoResponse(ValidationResult validationResult, KMSucursalMesaPagoDto pago = null) : base(validationResult)
-//        {
-//            Pago = pago;
-//        }
-//    }
-
-//    public class AgregarProductoRequestValidator : AbstractValidator<AgregarProductoRequest>
-//    {
-//        public IUnitOfWork UnitOfWork { get; set; }
-//        public Producto Tercero { get; set; }
-
-//        public AgregarProductoRequestValidator(IUnitOfWork unitOfWork)
-//        {
-//            UnitOfWork = unitOfWork;
-//            RuleFor(r => r).Must(DebeExistirCategoria).WithMessage(t => $"No existe vigencia activa del año actual");
-//            RuleFor(r => r).Must(DebeExistirMesa).WithMessage(t => $"No existe la mesa [{t.KMSucursalMesaId}]");
-//            RuleFor(r => r).Must(DebeExistirServicio).WithMessage(t => $"No existe el servicio [{t.KMSucursalServicioId}]");
-//            RuleFor(t => t.MedioPago).NotNull().NotEmpty().WithMessage("Debe enviar el medio de pago!");
+        private readonly AgregarProductoRequestValidator _validator;
+        public readonly IMapper _mappeer;
 
 
-//            When(t => t.CategoriaId.HasValue, () =>
-//            {
-//                RuleFor(r => r).Must(DebeExistirCategoria).WithMessage(t => $"No existe la categoria del producto a registrar [{t.CategoriaId}]");
-//            });
+        private AgregarProductoRequest _request;
+        public AgregarProductoInteractor(AbstractValidator<AgregarProductoRequest> validator, IMapper mappeer)
+        {
+            _mappeer = mappeer;
+            _validator = validator as AgregarProductoRequestValidator;
+        }
+
+        public Task<AgregarProductoResponse> Handle(AgregarProductoRequest request, CancellationToken cancellationToken)
+        {
+            _request = request;
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid) return Task.FromResult(new AgregarProductoResponse(validationResult));
+
+            var prodcuto = _validator.UnitOfWork.ProductoRepository.Add(new Producto
+            {
+                Nombre = _request.Nombre,
+                Descripcion = _request.Descripcion,
+                Imagen = _request.Imagen,
+                CategoriaId = _request.CategoriaId.Value,
+            });
+
+            _validator.UnitOfWork.Commit(this);
+
+            var prodcutoDto = new ProductoDto();
+            _mappeer.Map(prodcuto, prodcutoDto);
+
+            return Task.FromResult(new AgregarProductoResponse(validationResult, prodcutoDto));
+        }
+    }
+
+    public class AgregarProductoRequest : IRequest<AgregarProductoResponse>
+    {
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int? CategoriaId { get; set; }
+        public string Imagen { get; set; }
+    }
+
+    public class AgregarProductoResponse
+    {
+        public ProductoDto ProductoDto { get; set; }
+        private ValidationResult ValidationResult { get; }
+        public string Mensaje { get; set; }
+        public bool IsValid => ValidationResult.IsValid;
+        public AgregarProductoResponse(ValidationResult validationResult, ProductoDto productoDto = null)
+        {
+            ValidationResult = validationResult;
+            ProductoDto = productoDto;
+            if (!ValidationResult.IsValid)
+            {
+                Mensaje = ValidationResult.ToText();
+            }
+            else
+            {
+                Mensaje = $"Operación realizada satisfactoriamente.";
+            }
+        }
+
+       
+    }
+
+    public class AgregarProductoRequestValidator : AbstractValidator<AgregarProductoRequest>
+    {
+        public IUnitOfWork UnitOfWork { get; set; }
+
+        public AgregarProductoRequestValidator(IUnitOfWork unitOfWork)
+        {
+            UnitOfWork = unitOfWork;
+            RuleFor(t => t.Nombre).NotNull().NotEmpty().WithMessage("Debe enviar el nombre del producto a registrar!");
+            RuleFor(t => t.Descripcion).NotNull().NotEmpty().WithMessage("Debe enviar el nombre del producto a registrar!");
+
+
+            When(t => t.CategoriaId.HasValue, () =>
+            {
+                RuleFor(r => r).Must(DebeExistirCategoria).WithMessage(t => $"No existe la categoria del producto a registrar [{t.CategoriaId}]");
+            });
+        }
+
+        private bool DebeExistirCategoria(AgregarProductoRequest request)
+        {
+            var existeCategoria = UnitOfWork.CategoriaRepository.Any(t => t.Id == request.CategoriaId);
+            return existeCategoria;
+        }
 
 
 
-//        }
-
-//        private bool DebeExistirCategoria(AgregarProductoRequest request)
-//        {
-//            VigenciaActiva = UnitOfWork.VigenciaRepository.GetVigenciaActiva();
-//            return VigenciaActiva != null && VigenciaActiva.Year == UnitOfWork.Sistema.Now.Year;
-//        }
-
-
-
-//    }
-//}
+    }
+}

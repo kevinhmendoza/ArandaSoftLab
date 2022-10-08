@@ -25,6 +25,9 @@ namespace ArandaSoftLab.Infrastructure.Data.Base
         private IProductoRepository _productoRepository;
         public IProductoRepository ProductoRepository { get { return _productoRepository ?? (_productoRepository = new ProductoRepository(_dbContext)); } }
 
+        private ICategoriaRepository _categoriaRepository;
+        public ICategoriaRepository CategoriaRepository { get { return _categoriaRepository ?? (_categoriaRepository = new CategoriaRepository(_dbContext)); } }
+
         /// <summary>
         /// Initializes a new instance of the UnitOfWork class.
         /// </summary>

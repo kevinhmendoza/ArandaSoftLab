@@ -4,7 +4,7 @@ using ArandaSoftLab.Infrastructure.Data.Base;
 
 namespace ArandaSoftLab.Infrastructure.Data.Repositories.Productos
 {
-    class ProductoRepository : GenericRepository<Producto>, IProductoRepository
+    public class ProductoRepository : GenericRepository<Producto>, IProductoRepository
     {
         public ProductoRepository(IDbContext context) : base(context)
         {

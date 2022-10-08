@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.WebApi", "ArandaSoftLab.WebApi\ArandaSoftLab.WebApi.csproj", "{7DA590AA-D78F-4B15-95ED-67EA31417830}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Infrastructure.Data", "ArandaSoftLab.Infrastructure.Data\ArandaSoftLab.Infrastructure.Data.csproj", "{C5B0C9FC-65BD-491E-9014-C6109FF80874}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Infrastructure.Initialization", "ArandaSoftLab.Infrastructure.Initialization\ArandaSoftLab.Infrastructure.Initialization.csproj", "{C895AB6C-7D32-4033-84A8-0C407A7B05BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Infrastructure.Audit", "ArandaSoftLab.Infrastructure.Audit\ArandaSoftLab.Infrastructure.Audit.csproj", "{402F5123-1050-44A5-89D2-ED0C1FEEF16E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Infrastructure.Security", "ArandaSoftLab.Infrastructure.Security\ArandaSoftLab.Infrastructure.Security.csproj", "{C4A79039-8452-424F-9552-81CCE9DF62C7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Core.Domain", "ArandaSoftLab.Core.Domain\ArandaSoftLab.Core.Domain.csproj", "{C062E1D0-1871-41C7-ADB6-67332BDBC85D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.Core.UseCase", "ArandaSoftLab.Core.UseCase\ArandaSoftLab.Core.UseCase.csproj", "{97ED1CEC-2AFB-461F-8F00-3CB159022AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArandaSoftLab.WebApi", "ArandaSoftLab.WebApi\ArandaSoftLab.WebApi.csproj", "{07630DC5-896C-42F2-8978-9566F5C0BDE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7DA590AA-D78F-4B15-95ED-67EA31417830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DA590AA-D78F-4B15-95ED-67EA31417830}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DA590AA-D78F-4B15-95ED-67EA31417830}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DA590AA-D78F-4B15-95ED-67EA31417830}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5B0C9FC-65BD-491E-9014-C6109FF80874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5B0C9FC-65BD-491E-9014-C6109FF80874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5B0C9FC-65BD-491E-9014-C6109FF80874}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,10 +33,6 @@ Global
 		{402F5123-1050-44A5-89D2-ED0C1FEEF16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{402F5123-1050-44A5-89D2-ED0C1FEEF16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{402F5123-1050-44A5-89D2-ED0C1FEEF16E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4A79039-8452-424F-9552-81CCE9DF62C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4A79039-8452-424F-9552-81CCE9DF62C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4A79039-8452-424F-9552-81CCE9DF62C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4A79039-8452-424F-9552-81CCE9DF62C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C062E1D0-1871-41C7-ADB6-67332BDBC85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C062E1D0-1871-41C7-ADB6-67332BDBC85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C062E1D0-1871-41C7-ADB6-67332BDBC85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +41,10 @@ Global
 		{97ED1CEC-2AFB-461F-8F00-3CB159022AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97ED1CEC-2AFB-461F-8F00-3CB159022AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97ED1CEC-2AFB-461F-8F00-3CB159022AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07630DC5-896C-42F2-8978-9566F5C0BDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07630DC5-896C-42F2-8978-9566F5C0BDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07630DC5-896C-42F2-8978-9566F5C0BDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07630DC5-896C-42F2-8978-9566F5C0BDE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

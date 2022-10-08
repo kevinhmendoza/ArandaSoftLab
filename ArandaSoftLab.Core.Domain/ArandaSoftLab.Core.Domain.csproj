@@ -65,6 +65,7 @@
     <Compile Include="Base\ILogger.cs" />
     <Compile Include="Base\ISistema.cs" />
     <Compile Include="Base\IUnitOfWork.cs" />
+    <Compile Include="Contracts\Repositories\Productos\ICategoriaRepository.cs" />
     <Compile Include="Contracts\Repositories\Productos\IProductoRepository.cs" />
     <Compile Include="Enumerations\AccionEnumeration.cs" />
     <Compile Include="Enumerations\EstadoEnumeration.cs" />

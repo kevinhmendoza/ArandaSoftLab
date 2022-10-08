@@ -11,7 +11,7 @@ namespace ArandaSoftLab.Core.Domain.Productos
     public class Categoria : AuditableEntity<int>
     {
     
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
         public virtual ICollection<Producto> Productos { get; set; }
 
         public void Inactivar()

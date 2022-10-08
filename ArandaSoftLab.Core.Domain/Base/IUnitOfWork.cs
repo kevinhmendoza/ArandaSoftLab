@@ -10,6 +10,7 @@ namespace Core.UseCase.Base
         ISistema Sistema { get; }
 
         IProductoRepository ProductoRepository { get; }
+        ICategoriaRepository CategoriaRepository { get; }
         /// <summary>
         /// Saves all pending changes
         /// </summary>
