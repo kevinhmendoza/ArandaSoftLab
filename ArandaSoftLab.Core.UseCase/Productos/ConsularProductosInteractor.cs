@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArandaSoftLab.Core.Domain
+namespace ArandaSoftLab.Core.UseCase.Productos
 {
-    public class Class1
+    class ConsularProductosInteractor
     {
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace ArandaSoftLab.Infrastructure.Audit
+namespace Core.UseCase.Base
 {
-    public class Class1
+    public interface IFormattedValidationException
     {
+        string Message { get; }
     }
 }

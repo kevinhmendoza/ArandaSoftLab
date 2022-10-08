@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArandaSoftLab.Core.UseCase
+namespace ArandaSoftLab.Core.UseCase.Productos
 {
-    public class Class1
+    class ModificarProductosInteractor
     {
     }
 }
