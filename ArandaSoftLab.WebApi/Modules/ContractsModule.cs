@@ -1,4 +1,5 @@
-﻿using ArandaSoftLab.Infrastructure.Data.Base;
+﻿using ArandaSoftLab.Core.Domain.Base;
+using ArandaSoftLab.Infrastructure.Data.Base;
 using Autofac;
 using Core.UseCase.Base;
 
@@ -10,6 +11,7 @@ namespace Application.WebApi.Modules
         {
             //builder.RegisterType(typeof(IExceptionLogger)).As(typeof(UnhandledExceptionLogger)).InstancePerLifetimeScope();
             builder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerLifetimeScope();
+            builder.RegisterType(typeof(ArandaSoftLabMapper)).As(typeof(IMapper)).InstancePerLifetimeScope();
 
             //hangFire
         }

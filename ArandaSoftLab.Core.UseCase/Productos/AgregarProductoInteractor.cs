@@ -1,17 +1,13 @@
-﻿using ArandaSoftLab.Core.Domain.Enumerations;
+﻿using ArandaSoftLab.Core.Domain.Base;
+using ArandaSoftLab.Core.Domain.Enumerations;
 using ArandaSoftLab.Core.Domain.Productos;
 using ArandaSoftLab.Core.UseCase.Dtos;
 using ArandaSoftLab.Core.UseCase.Util;
-using AutoMapper;
 using Core.UseCase.Base;
 using Core.UseCase.Util;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +23,7 @@ namespace ArandaSoftLab.Core.UseCase.Productos
 
 
         private AgregarProductoRequest _request;
-        public AgregarProductoInteractor(AbstractValidator<AgregarProductoRequest> validator, IMapper mappeer)
+        public AgregarProductoInteractor(IValidator<AgregarProductoRequest> validator, IMapper mappeer)
         {
             _mappeer = mappeer;
             _validator = validator as AgregarProductoRequestValidator;

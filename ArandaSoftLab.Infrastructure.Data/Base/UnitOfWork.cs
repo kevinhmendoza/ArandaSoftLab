@@ -1,8 +1,8 @@
 ﻿using ArandaSoftLab.Core.Domain.Contracts.Repositories.Productos;
 using ArandaSoftLab.Infrastructure.Data.Repositories.Productos;
-using Core.Entities.Contracts;
 using Core.UseCase.Base;
 using Core.UseCase.Util;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
@@ -18,8 +18,7 @@ namespace ArandaSoftLab.Infrastructure.Data.Base
         /// The DbContext Base que tiene implementado la gestión de Auditoria
         /// </summary>
         private IDbContext _dbContext;
-        private readonly ILogger _logger;
-        private readonly ISistema _sistema;
+     
 
 
         private IProductoRepository _productoRepository;
@@ -32,23 +31,13 @@ namespace ArandaSoftLab.Infrastructure.Data.Base
         /// Initializes a new instance of the UnitOfWork class.
         /// </summary>
         /// <param name="context">The object context</param>
-        public UnitOfWork(IDbContext context, ISistema sistema, ILogger logger)
+        public UnitOfWork(IDbContext context)
         {
             _dbContext = context;
-            _logger = logger;
-            _sistema = sistema;
+          
         }
 
-        /// <summary>
-        /// Obtiene la Información del Sistema como el Usuario Actual y La Fecha Actual
-        /// </summary>
-        public ISistema Sistema
-        {
-            get
-            {
-                return _sistema;
-            }
-        }
+   
 
       
 
@@ -60,20 +49,17 @@ namespace ArandaSoftLab.Infrastructure.Data.Base
         {
             try
             {
-                int NumeroFilas = _dbContext.SaveChanges(_sistema.HostName, _sistema.IpAddress, _sistema.UserName, _sistema.Now, interactor.Module, interactor.Name);
-                _logger.Info("Se realizó Transacción");
+                int NumeroFilas = _dbContext.SaveChanges("LocalHost", "::", "Admin", DateTime.Now, interactor.Module, interactor.Name);
                 return NumeroFilas;
             }
             catch (DbEntityValidationException e)
             {
                 string message = DynamicException.Formatted(e);
-                _logger.Error(message);
                 throw new DynamicFormattedException(message);
             }
             catch (DbUpdateException e)
             {
                 string message = DynamicException.Formatted(e);
-                _logger.Error(message);
                 throw new DynamicFormattedException(message);
             }
 

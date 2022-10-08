@@ -1,5 +1,4 @@
 ﻿using ArandaSoftLab.Core.Domain.Contracts.Repositories.Productos;
-using Core.Entities.Contracts;
 using Core.UseCase.Util;
 using System;
 
@@ -7,7 +6,7 @@ namespace Core.UseCase.Base
 {
     public interface IUnitOfWork : IDisposable
     {
-        ISistema Sistema { get; }
+     
 
         IProductoRepository ProductoRepository { get; }
         ICategoriaRepository CategoriaRepository { get; }

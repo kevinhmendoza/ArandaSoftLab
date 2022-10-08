@@ -62,8 +62,7 @@
     <Compile Include="Base\IFormattedValidationException.cs" />
     <Compile Include="Base\IGenericRepository.cs" />
     <Compile Include="Base\IGenericRepositoryQuery.cs" />
-    <Compile Include="Base\ILogger.cs" />
-    <Compile Include="Base\ISistema.cs" />
+    <Compile Include="Base\IMapper.cs" />
     <Compile Include="Base\IUnitOfWork.cs" />
     <Compile Include="Contracts\Repositories\Productos\ICategoriaRepository.cs" />
     <Compile Include="Contracts\Repositories\Productos\IProductoRepository.cs" />
