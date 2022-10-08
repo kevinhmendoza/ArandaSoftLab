@@ -2,6 +2,8 @@ using System.Web.Http;
 using WebActivatorEx;
 using ArandaSoftLab.WebApi;
 using Swashbuckle.Application;
+using System.IO;
+using System.Text.RegularExpressions;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -62,7 +64,7 @@ namespace ArandaSoftLab.WebApi
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -102,7 +104,8 @@ namespace ArandaSoftLab.WebApi
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        var filePath = Path.Combine(Regex.Split(System.AppContext.BaseDirectory, "ArandaSoftLab.WebApi")[0]+ "ArandaSoftLab.Core.UseCase", @"bin\Debug\ArandaSoftLab.Core.UseCase.xml");
+                        c.IncludeXmlComments(filePath);
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
